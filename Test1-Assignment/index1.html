@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style1.css">
+  <title>SignUp Form</title>
+</head>
+<body>
+    <div class="bigcont">
+      <div class="container">
+        <div class="form">
+          <div class="grid">
+            <div class="top">
+              <div class="headmax">
+                <h1 class="topheading">Join The Headmax Community!</h1>
+              </div>
+              <p class="off">Get a 10% off your first purchase if you sign up now</p>
+              <h1 class="sign">Sign Up</h1>
+              <hr style="margin-bottom: 4px">
+            </div>
+            <div class="image">
+              <img class="imagee" src="image1.png">
+            </div>
+          </div>
+          <div class="name">
+            <div class="fname">
+              <label for="firstname"><b>First name</b></label><br>
+              <input id="fname" type="text" placeholder="Enter first name">
+              <span id="fnameError" class="error"></span>
+              <p id="fnameErrors" class="error"></p>
+            </div>
+            <div class="lname">
+              <label for="lastname"><b>Last name</b></label><br>
+              <input id="lname" type="text" placeholder="Enter last name" name="lastname" required><br>
+              <span id="lnameError" class="error"></span>
+              <p id="lnameErrors" class="error"></p>
+            </div>
+          </div>
+          <label for="email"><b>Email</b></label>
+          <input id="username" type="text" placeholder="Enter Email" name="email" required>
+          <span id="emailError" class="error"></span>
+          <p id="usernameErrors" class="error"></p>
+            
+          <label for="psw"><b>Password</b></label>
+          <input id="userpassword" type="password" placeholder="Enter Password" name="psw" required>
+          <span id="passwordError" class="error"></span>
+          <p id="userpasswordErrors" class="error"></p>
+            
+          <label>
+            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+          </label>
+  
+          <div class="login">
+            <p class="logintag">Already have an account? <a href="#" style="color:dodgerblue">Log In</a></p>
+          </div>
+  
+          <div class="tc">
+            <p class="tcbottom">By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+          </div>
+  
+          <div id="errorContainer" class="errorContainer"></div>
+  
+          <div class="clearfix">
+            <button type="button" class="signupbtn" onclick="validateForm()">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+    function validateForm() {
+   var fname = document.getElementById("fname").value.trim();
+   var lname = document.getElementById("lname").value.trim();
+   var email = document.getElementById("username").value.trim();
+   var password = document.getElementById("userpassword").value.trim();
+ 
+   if (fname === "") {
+     document.getElementById("fnameErrors").innerHTML = "*First name cannot be empty";
+   } else {
+     document.getElementById("fnameErrors").innerHTML = "";
+   }
+ 
+   if (lname === "") {
+     document.getElementById("lnameErrors").innerHTML = "*Last name cannot be empty";
+   } else {
+     document.getElementById("lnameErrors").innerHTML = "";
+   }
+ 
+   if (email === "") {
+     document.getElementById("usernameErrors").innerHTML = "*Email cannot be empty";
+   } else if (!isValidEmail(email)) {
+     document.getElementById("usernameErrors").innerHTML = "*Please use correct email address";
+   }
+    else {
+     document.getElementById("usernameErrors").innerHTML = "";
+   }
+ 
+   if (password === "") {
+     document.getElementById("userpasswordErrors").innerHTML = "*Password cannot be empty";
+   } else if (password.length < 8) {
+     document.getElementById("userpasswordErrors").innerHTML = "*Password should have at least 9 characters";
+   } else if (!hasUpperCase(password) || !hasLowerCase(password) || !hasNumber(password)) {
+     document.getElementById("userpasswordErrors").innerHTML = "*Password should atleast one Upper case, lower case and number ";
+   }
+   else {
+     document.getElementById("userpasswordErrors").innerHTML = "";
+   }
+ }
+ 
+ function hasUpperCase(str) {
+   return /[A-Z]/.test(str);
+ }
+ 
+ function hasLowerCase(str) {
+   return /[a-z]/.test(str);
+ }
+ 
+ function hasNumber(str) {
+   return /[0-9]/.test(str);
+ }
+ 
+ function isValidEmail(email) {
+   // Regular expression pattern for email validation
+   var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+   return emailPattern.test(email);
+ }
+   </script>
